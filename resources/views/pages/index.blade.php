@@ -22,18 +22,21 @@
 		<div class="w3-banner-grids">
 			<div class="col-md-6 w3-banner-grid-left">
 				<div class="w3-banner-img">
+                    @if(count($posts) > 0)
 					@foreach($posts as $post)
                     <img src="/storage/profile_images/{{$post->profile_image}}" alt="img">
                     <h3 class="test">{{$post->name}}</h3>
 					<p class="test" >{{$post->work}}</p>
 					<p class="test" >{{$post->education}}</p>
                     @endforeach
+                    @endif
 					<br>
 				</div>
 			</div>
 			<div class="col-md-6 w3-banner-grid-right">
 			<div class="w3-banner-text">
-				<h3>Professional experience</h3>
+                <h3>Professional experience</h3>
+                @if(count($posts) > 0)
                 @foreach($posts as $post)
                 @if(!Auth::guest())
                 @if(Auth::user()->id == $post->user_id)
@@ -63,8 +66,10 @@
 					<span>{{$post->duty}}</span>
                 </p>
                 @endforeach
+                @endif
 			</div>
 				<div class=" w3-right-addres-1">
+                    @if(count($posts) > 0)
                     @foreach($posts as $post)
                     <ul class="address">
                         <li>
@@ -98,6 +103,7 @@
                         </li>
                     </ul>
                     @endforeach
+                    @endif
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -296,6 +302,7 @@
 		<h4>Professional Experiences</h4>
 		</div>
 		<div class="skills-bar">
+            @if(count($skills) > 0)
             @foreach($skills as $skill)
 			<div class="col-md-6 w3-agile-skills-grid">
 				<section class='bar'>
@@ -326,7 +333,8 @@
 				    </section>
 				</section>
 			</div>
-			@endforeach
+            @endforeach
+            @endif
 		    <div class="clearfix"></div>
 		</div>
 	</div>
@@ -339,6 +347,7 @@
 			<h3>Company Overview</h3>
 		</div>
         <div class="contact-w3ls">
+            @if(count($items) > 0)
             @foreach ($items as $item)
                 <div class="col-md-6 col-sm-12 contact-right agileits-w3layouts">
                     <h1 style="color: #fff; text-align: center;">{{$item->name}}
@@ -358,6 +367,7 @@
                     <h3 style="color: #fff; text-align: center;">{{$item->duty}}</h3>
                 </div>
             @endforeach
+            @endif
             <div class="clearfix"></div>
         </div>
 	</div>
@@ -380,6 +390,7 @@
                 </ul>
 			    <div class="filtr-container" style="padding: 0px; position: relative; height: 858px;">
                     <!-- one -->
+                    @if(count($projects) > 0)
                     @foreach ($projects as $project)
                         <div class="col-md-4 col-ms-6 jm-item first filtr-item" data-category="{{$project->article}}" data-sort="Busy streets" style="opacity: 1; transform: scale(1) translate3d(0px, 0px, 0px); backface-visibility: hidden; perspective: 1000px; transform-style: preserve-3d; position: absolute; transition: all 0.5s ease-out 0ms;">
                             <div class="jm-item-wrapper">
@@ -391,6 +402,7 @@
                             </div>
                         </div>
                     @endforeach
+                    @endif
                     <div class="clearfix"></div>
                 </div>
 		    </div>
@@ -399,6 +411,7 @@
 	<!--//gallery-->
 </div>
 <!-- //main-content -->
+@if(count($projects) > 0)
 @foreach ($projects as $project)
 <div class="modal fade" id="{{$project->id}}" tabindex="-1" role="dialog" >
     <div class="modal-dialog">
@@ -417,6 +430,7 @@
     </div>
 </div>
 @endforeach
+@endif
     <!-- Kick off Filterizr -->
     <script type="text/javascript" src="{{ URL::asset('front/js/jquery.filterizr.js') }}"></script>
     <script type="text/javascript">
@@ -436,10 +450,12 @@
 							<i class="fa fa-map-marker" aria-hidden="true"></i>
 						</div>
 						<div class="w3ls_footer_grid_leftr">
-							<h4>Location</h4>
+                            <h4>Location</h4>
+                            @if(count($posts) > 0)
 							@foreach ($posts as $post)
                             <p>{{$post->location}}</p>
                             @endforeach
+                            @endif
 						</div>
 						<div class="clearfix"> </div>
 					</div>
@@ -448,10 +464,12 @@
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</div>
 						<div class="w3ls_footer_grid_leftr">
-							<h4>Email</h4>
+                            <h4>Email</h4>
+                            @if(count($posts) > 0)
 							@foreach ($posts as $post)
                             <p>{{$post->email}}</p>
                             @endforeach
+                            @endif
 						</div>
 						<div class="clearfix"> </div>
 					</div>
